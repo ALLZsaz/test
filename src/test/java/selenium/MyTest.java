@@ -23,7 +23,9 @@ public class MyTest {
 
     @Test
     public void testLedgerList() throws Exception {
+        System.console().writer().println("before");
         driver.navigate().to("http://localhost:8080/ledger");
+        System.console().writer().println("after");
         (new WebDriverWait(driver, 1)).until((ExpectedCondition<Boolean>) (WebDriver d) -> d.getPageSource().contains("март")
                 && d.getPageSource().contains("17")
                 && d.getPageSource().contains("18"));
