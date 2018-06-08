@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Log in</title>
+    <style type="text/css">
+        input {
+            line-height: 2;
+            width: 30%;
+            margin-bottom: 4px;
+        }
+        input[type=submit] {
+            padding: 5px 15px;
+            background: #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button {
+            padding: 5px 15px;
+            background: #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h2 >Please log in</h2>
+    <form th:action="@{/login}" method="post">
+        <p th:if="${param.error}">Неправильные логин и пароль</p>
+        <p th:if="${param.logout}">Выход...</p>
+
+        <p><input type="text" name="login" placeholder="Логин"/></p>
+        <p><input type="password" name="pass" placeholder="Пароль"/></p>
+        <p><input name="btnLogin" type="submit" value="Войти"/></p>
+        <p><button type="button" onclick="location.href='/'">Домой</button></p>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Начальная страница</title>
+    <style type="text/css">
+        #parent {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: auto;
+        }
+
+        #block {
+            width: 450px;
+            height: 250px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            text-align:center;
+        }
+
+        button {
+            width: 100%;
+            height: 30px;
+            padding: 0;
+            margin-bottom: 0;
+            background: #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="parent">
+    <div id="block">
+        <h1>Учет показателей воды и электричества</h1>
+        <button type="button" name="btnToLedger" onclick="location.href='ledger'">
+            Просмотр
+        </button>
+    </div>
+</div>
+</body>
+</html>

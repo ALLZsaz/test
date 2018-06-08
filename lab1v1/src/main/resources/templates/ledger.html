@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>-->
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/ledger.js"></script>
+    <title>Учет показателей воды и электричества</title>
+    <style type="text/css">
+        input {
+            line-height: 2;
+            width: 30%;
+            margin-bottom: 4px;
+        }
+        input[type=submit] {
+            padding: 5px 15px;
+            background: #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        td {
+            text-align: center;
+        }
+        td input[type=button]{
+            width: 100%;
+            height: 30px;
+            padding: 0;
+            margin-bottom: 0;
+            background: #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button {
+            padding: 5px 15px;
+            background: #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 0;
+        }
+        #err {
+            color: red;
+        }
+    </style>
+</head>
+
+<body ng-app="ledger" ng-controller="LedgerController">
+<h2>Учет показателей воды и электричества</h2>
+
+<div sec:authorize="isAnonymous()" >
+    <a href="/login"><button name="btnLogin">Login</button></a>
+</div>
+<div sec:authorize="isAuthenticated()">
+    <a href="/logout"><button name="btnLogout">Logout</button></a>
+</div>
+
+<div ng-controller="getLedger" ng-show="dList.length > 0">
+
+    <table id="ledgerTable" border="1" width="60%" >
+        <tr>
+            <th>номер</th>
+            <th>месяц</th>
+            <th>показатель воды</th>
+            <th>показатель эл-ва</th>
+            <th>удалить</th>
+        </tr>
+        <tr ng-repeat="ledger in dList" id="{{ledger.num}}">
+            <td>{{ledger.num}}</td>
+            <td>{{ledger.month_name}}</td>
+            <td>{{ledger.water}}</td>
+            <td>{{ledger.electricity}}</td>
+            <td><div sec:authorize="isAuthenticated()"><input name="delMonth" type="button" value="Удалить" ng-click="delete(ledger.num)" /></div></td>
+        </tr>
+    </table>
+</div>
+<br />
+<div ng-show="isAddError" id="err">
+    <strong>Error!</strong> {{errorMessage}}
+</div>
+<div sec:authorize="isAuthenticated()">
+    <form role="form" ng-submit="addMonth(num, month_name, water, electricity)">
+        <input type="text" name="num" ng-model="num" placeholder="номер" /> <br />
+        <input type="text" name="month_name" ng-model="month_name" placeholder="месяц" /> <br />
+        <input type="text" name="water" ng-model="water" placeholder="показатель воды" /> <br />
+        <input type="text" name="electricity" ng-model="electricity" placeholder="показатель эл-ва" /> <br />
+        <input type="submit" name="addMonth" value="Добавить" />
+    </form>
+</div>
+<button onclick="location.href='search'" name="toSearch">
+    Перейти к поиску
+</button>
+
+</body>
+</html>
