@@ -36,7 +36,7 @@ def test_gui(qtbot):
     qtbot.keyClicks(window.plainTextEditGoal, "(2, 3)")
     qtbot.wait(500)
     qtbot.mouseClick(window.pushButton, QtCore.Qt.LeftButton)
-    assert window.plainTextEditPath.toPlainText() == 'no way'
+    assert window.plainTextEditPath.toPlainText() == ''
     qtbot.wait(500)
     qtbot.mouseClick(window.pushButton_2, QtCore.Qt.LeftButton)
     assert window.plainTextEditPath.toPlainText() == ''
