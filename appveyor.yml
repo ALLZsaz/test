@@ -35,7 +35,7 @@ environment:
 
   matrix:
       - PYTHON_VERSION: "3.5"
-        CONDA_DEPENDENCIES: "setuptools pytest PyQt4"
+        CONDA_DEPENDENCIES: "setuptools pytest pyqt=4.* qt=4.*"
         PIP_DEPENDENCIES: "pytest-qt"
 
 platform:
